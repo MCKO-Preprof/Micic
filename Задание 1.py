@@ -1,9 +1,13 @@
 import csv
+# откпрываем нужные файлы на чтение и запись
 with open('space.csv', encoding='utf-8') as f,open('space_new.csv','w',encoding='utf-8') as fn:
     data = list(csv.reader(f,delimiter='*'))
     res = csv.writer(fn,delimiter=',')
     # print(*data, sep='\
+
+
     res.writerow(data[0])
+    #проходимся циклом по строкам и задаем нужные пременные
     for stroka in data[1:]:
         n = int(stroka[0][5])
         m = int(stroka[0][6])
@@ -15,6 +19,7 @@ with open('space.csv', encoding='utf-8') as f,open('space_new.csv','w',encoding=
         x_d = int(last_stroka[0])
         y_d = int(last_stroka[1])
         coord = stroka[2].split()
+        #заполняем нужные нам столбцы по условию
         if coord[0] == '0' or coord[1] == '0':
             if n>5:
                 coord[0] = n+x_d
@@ -25,5 +30,6 @@ with open('space.csv', encoding='utf-8') as f,open('space_new.csv','w',encoding=
             if m<=3:
                 coord[1] = -(n+y_d)*m
             stroka[2] = f'{coord[0]},{coord[1]}'
+        #записываем обновленную таблицу в новый файл
         res.writerow(stroka)
     print(*data,sep='\n')
