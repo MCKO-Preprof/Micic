@@ -24,4 +24,6 @@ with open('space.csv', encoding='utf-8') as f,open('space_new.csv','w',encoding=
                 coord[1] = m+t+y_d
             if m<=3:
                 coord[1] = -(n+y_d)*m
+            stroka[2] = f'{coord[0]},{coord[1]}'
+        res.writerow(stroka)
     print(*data,sep='\n')
